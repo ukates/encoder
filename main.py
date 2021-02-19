@@ -1,27 +1,27 @@
-##This is source code from DataFlair website and is not my own.  Keeping for personal use and reference
-##source https://data-flair.training/blogs/python-message-encode-decode/
+# This is source code from DataFlair website and is not my own.  Keeping for personal use and reference
+# source https://data-flair.training/blogs/python-message-encode-decode/
 
 from tkinter import *
 import base64
 
-##create tkinter window
+# create tkinter window
 root = Tk()
-##select size and title for window
-root.geometry('500x300')
+# select size and title for window
+root.geometry('500x400')
 root.resizable(0, 0)
 root.title("DataFlair - Message Encode and Decode")
-##create labels
+# create labels
 Label(root, text='ENCODE DECODE', font='arial 20 bold').pack()
 Label(root, text='DataFlair', font='arial 20 bold').pack(side=BOTTOM)
-##define variables
+# define variables
 Text = StringVar()  # message to encode
 private_key = StringVar()
 mode = StringVar()
 Result = StringVar()
 
 
-def Encode(key,message):
-    enc=[]
+def Encode(key, message):
+    enc = []
 
     for i in range(len(message)):
         key_c = key[i % len(key)]
@@ -29,13 +29,13 @@ def Encode(key,message):
     return base64.urlsafe_b64encode("".join(enc).encode()).decode()
 
 
-def Decode(key,message):
-    dec=[]
+def Decode(key, message):
+    dec = []
     message = base64.urlsafe_b64decode(message).decode()
 
     for i in range(len(message)):
         key_c = key[i % len(key)]
-        dec.append(chr((256 + ord(message[i])- ord(key_c)) % 256))
+        dec.append(chr((256 + ord(message[i]) - ord(key_c)) % 256))
     return "".join(dec)
 
 
@@ -58,7 +58,8 @@ def Reset():
     mode.set("")
     Result.set("")
 
-Label(root, font= 'arial 12 bold', text='MESSAGE').place(x= 60,y=60)
+
+Label(root, font='arial 12 bold', text='MESSAGE').place(x=60, y=60)
 Entry(root, font='arial 10', textvariable=Text, bg='ghost white').place(x=290, y=60)
 
 Label(root, font='arial 12 bold', text='KEY').place(x=60, y=90)
